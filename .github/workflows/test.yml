@@ -27,3 +27,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push image
         run: docker push ${{ env.IMAGE_NAME }}
+  push-gcp:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    steps:
+      - name: Pull docker image
+        run: docker pull ${{ env.IMAGE_NAME }}
