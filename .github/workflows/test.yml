@@ -31,6 +31,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     needs: build
+    permissions:
+      contents: "read"
+      id-token: "write"
     steps:
-      - name: Pull docker image
-        run: docker pull ${{ env.IMAGE_NAME }}
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v0.3.1"
+        with:
+          token_format: "access_token"
+          workload_identity_provider: "projects/533751496677/locations/global/workloadIdentityPools/github-oidc-pool/providers/oidc-github-provider"
+          service_account: "deployer@octovy-service.iam.gserviceaccount.com"
