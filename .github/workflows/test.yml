@@ -41,5 +41,5 @@ jobs:
         with:
           token_format: "access_token"
           workload_identity_provider: "projects/533751496677/locations/global/workloadIdentityPools/github-oidc-pool/providers/oidc-github-provider"
-          service_account: "oidc-auth-user-for-deployer@octovy-service.iam.gserviceaccount.com"
+          service_account: "deployer@octovy-service.iam.gserviceaccount.com"
           # delegates: deployer@octovy-service.iam.gserviceaccount.com
